@@ -31,10 +31,10 @@
 #include <QUuid>
 #include <QTime>
 
-#include "Whatsapp/util/qtmd5digest.h"
-#include "Whatsapp/util/utilities.h"
-#include "Whatsapp/util/datetimeutilities.h"
-#include "Whatsapp/protocoltreenodelistiterator.h"
+#include "util/qtmd5digest.h"
+#include "util/utilities.h"
+#include "util/datetimeutilities.h"
+#include "protocoltreenodelistiterator.h"
 
 #include "globalconstants.h"
 
@@ -1851,12 +1851,11 @@ void Connection::setNewUserName(QString push_name)
 */
 void Connection::sendClientConfig(QString platform)
 {
-    QSystemInfo systemInfo(this);
-
 #ifdef Q_WS_SCRATCHBOX
     QString language = "en";
     QString country = "US";
 #else
+    QSystemInfo systemInfo(this);
     QString language = systemInfo.currentLanguage();
     QString country = systemInfo.currentCountryCode();
 #endif

@@ -30,9 +30,9 @@
 #include "multipartuploader.h"
 #include "client.h"
 
-#include "qt-json/json.h"
-
 #include "util/utilities.h"
+
+#include <QJsonDocument>
 
 MultiPartUploader::MultiPartUploader(QObject *parent)
     : HttpRequestv2(parent)
@@ -58,11 +58,10 @@ void MultiPartUploader::error(QNetworkReply::NetworkError error)
 
 void MultiPartUploader::onResponse()
 {
-    QString jsonStr = QString::fromUtf8(socket->readAll().constData());
-    Utilities::logData("Reply: " + jsonStr);
+    QByteArray data = socket->readAll();
+    Utilities::logData("Reply: " + data);
 
-    bool ok;
-    QVariantMap mapResult = QtJson::parse(jsonStr, ok).toMap();
+    QVariantMap mapResult = QJsonDocument::fromJson(data).toVariant().toMap();
 
     emit finished(this, mapResult);
 }

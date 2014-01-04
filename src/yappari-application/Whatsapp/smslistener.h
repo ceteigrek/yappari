@@ -30,11 +30,11 @@
 #define SMSLISTENER_H
 
 #include <QPointer>
-#include <QMessage>
-#include <QMessageManager>
+//#include <QMessage>
+//#include <QMessageManager>
 
 // QtMobility namespace
-QTM_USE_NAMESPACE
+//QTM_USE_NAMESPACE
 
 class SMSListener : public QObject
 {
@@ -46,13 +46,13 @@ signals:
     void codeReceived(SMSListener *,QString);
 
 public slots:
-    void messageAdded(const QMessageId&,
-                      const QMessageManager::NotificationFilterIdSet&);
+    //void messageAdded(const QMessageId&,
+    //                  const QMessageManager::NotificationFilterIdSet&);
 
 private:
-    QPointer<QMessageManager> m_manager;
-    QMessageManager::NotificationFilterIdSet m_notifFilterSet;
-    QMessageId m_messageId;
+    //QPointer<QMessageManager> m_manager;
+    //QMessageManager::NotificationFilterIdSet m_notifFilterSet;
+    //QMessageId m_messageId;
 };
 
 #endif // SMSLISTENER_H

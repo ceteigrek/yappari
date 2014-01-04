@@ -7,7 +7,7 @@
 
 class FormDataList : public QList<FormData>
 {
-    Q_OBJECT
+    //Q_OBJECT
 public:
     explicit FormDataList(QObject *parent = 0);
 

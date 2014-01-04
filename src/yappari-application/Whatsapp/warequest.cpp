@@ -33,7 +33,8 @@
 #include "globalconstants.h"
 
 #include "util/utilities.h"
-#include "qt-json/json.h"
+
+#include <QJsonDocument>
 
 WARequest::WARequest(QObject *parent) : HttpRequestv2(parent)
 {
@@ -89,15 +90,15 @@ void WARequest::onResponse()
 
 void WARequest::readResult()
 {
-    QString jsonStr = QString::fromUtf8(socket->readAll().constData());
+    QByteArray data = socket->readAll();
 
     // Debugging info
-    Utilities::logData("Reply: " + jsonStr);
+    Utilities::logData("Reply: " + data);
 
-    bool ok;
-    QVariantMap mapResult = QtJson::parse(jsonStr, ok).toMap();
+    QJsonParseError error;
+    QVariantMap mapResult = QJsonDocument::fromJson(data, &error).toVariant().toMap();
 
-    emit finished(this, ok, mapResult);
+    emit finished(this, (error.error == QJsonParseError::NoError), mapResult);
 }
 
 void WARequest::addParam(QString name, QString value)

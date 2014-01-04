@@ -6,6 +6,8 @@
 
 #include "client.h"
 
+#include <QDir>
+
 MediaDownload::MediaDownload(QObject *parent) :
     HttpRequestv2(parent)
 {

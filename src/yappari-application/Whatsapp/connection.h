@@ -30,7 +30,9 @@
 #ifndef CONNECTION_H
 #define CONNECTION_H
 
+#ifndef Q_WS_SCRATCHBOX
 #include <QSystemInfo>
+#endif
 #include <QTcpSocket>
 #include <QTimer>
 #include <QObject>
@@ -53,7 +55,9 @@
 #include "funstore.h"
 
 // QtMobility namespace
+#ifdef QTM_USE_NAMESPACE
 QTM_USE_NAMESPACE
+#endif // QTM_USE_NAMESPACE
 
 /**
     @class      Connection

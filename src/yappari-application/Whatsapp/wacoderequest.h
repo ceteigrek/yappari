@@ -29,14 +29,16 @@
 #ifndef WACODEREQUEST_H
 #define WACODEREQUEST_H
 
-#include <QSystemNetworkInfo>
-#include <QSystemDeviceInfo>
-#include <QSystemInfo>
+//#include <QSystemNetworkInfo>
+//#include <QSystemDeviceInfo>
+//#include <QSystemInfo>
 
 #include "warequest.h"
 
 // QtMobility namespace
+#ifdef QTM_USE_NAMESPACE
 QTM_USE_NAMESPACE
+#endif // QTM_USE_NAMESPACE
 
 class WACodeRequest : public WARequest
 {

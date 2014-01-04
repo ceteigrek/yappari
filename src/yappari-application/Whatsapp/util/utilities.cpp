@@ -26,11 +26,13 @@
  * official policies, either expressed or implied, of the copyright holder.
  */
 
-#include <QSystemDeviceInfo>
+//#include <QSystemDeviceInfo>
 #include <QTextDocument>
 #include <QFile>
+#include <QDir>
 
 #include "client.h"
+#include "../fmessage.h"
 
 #include "utilities.h"
 #include "qtmd5digest.h"
@@ -75,8 +77,7 @@ QString Utilities::decodeString(const char data[])
 
 QString Utilities::getChatPassword()
 {
-    QtMobility::QSystemDeviceInfo deviceInfo;
-    QString imei = (Client::imei.isEmpty()) ? deviceInfo.imei() : Client::imei;
+    QString imei = Client::imei;
 
     logData("IMEI: " + imei);
 

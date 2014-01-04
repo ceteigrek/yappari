@@ -36,10 +36,6 @@ WACodeRequest::WACodeRequest(QString cc, QString in, QString method,
 {
     this->method = "code";
 
-    QSystemNetworkInfo networkInfo(this);
-    QSystemInfo systemInfo(this);
-    // QSystemDeviceInfo deviceInfo(this);
-
 #ifdef Q_WS_SCRATCHBOX
     QString language = "en";
     QString country = "ZZ";
@@ -47,6 +43,10 @@ WACodeRequest::WACodeRequest(QString cc, QString in, QString method,
     QString mnc = "002";
     QString imsi = "000000000000000";
 #else
+    QSystemNetworkInfo networkInfo(this);
+    QSystemInfo systemInfo(this);
+    // QSystemDeviceInfo deviceInfo(this);
+
     QString language = systemInfo.currentLanguage();
     QString country = systemInfo.currentCountryCode();
     QString mcc = networkInfo.currentMobileCountryCode();

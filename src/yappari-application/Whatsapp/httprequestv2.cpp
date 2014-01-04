@@ -108,11 +108,11 @@ void HttpRequestv2::sendRequest() {
 
     request->append((method == GET) ? "GET" : "POST");
     request->append(' ');
-    request->append(url.encodedPath());
+    request->append(url.path(QUrl::FullyEncoded)); // FIXME
     if (method == GET)
-        request->append("?" + url.encodedQuery());
+        request->append("?" + url.query(QUrl::FullyEncoded));
     request->append(" HTTP/1.1\r\n");
-    request->append("Host: " + url.encodedHost() + "\r\n");
+    request->append("Host: " + url.host(QUrl::FullyEncoded) + "\r\n");
 
     // Add all the headers
     QList<QString> keys = headers.keys();

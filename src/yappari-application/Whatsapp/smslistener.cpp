@@ -33,6 +33,7 @@
 SMSListener::SMSListener(QObject *parent) :
     QObject(parent)
 {
+    /*
     // Manager for listening messages
     m_manager = new QMessageManager(this);
 
@@ -48,8 +49,10 @@ SMSListener::SMSListener(QObject *parent) :
     m_notifFilterSet.insert(m_manager->registerNotificationFilter(
         QMessageFilter::byType(QMessage::Sms) &
         QMessageFilter::byStandardFolder(QMessage::InboxFolder)));
+        */
 }
 
+/*
 void SMSListener::messageAdded(const QMessageId& id,
                                const QMessageManager::NotificationFilterIdSet& matchingFilterIds)
 {
@@ -78,3 +81,4 @@ void SMSListener::messageAdded(const QMessageId& id,
         }
     }
 }
+*/
