@@ -34,9 +34,9 @@
 #include <QString>
 #include <QList>
 
-#include "Whatsapp/fmessage.h"
+#include "../Whatsapp/fmessage.h"
 
-#include "Contacts/contact.h"
+#include "../Contacts/contact.h"
 
 class ChatLogger : public QObject
 {

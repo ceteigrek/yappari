@@ -32,7 +32,7 @@
 #include <QByteArray>
 #include <QMap>
 
-#include "Whatsapp/httprequestv2.h"
+#include "../Whatsapp/httprequestv2.h"
 #include "contactlist.h"
 #include "contactroster.h"
 

@@ -29,7 +29,7 @@
 #ifndef CONTACTROSTER_H
 #define CONTACTROSTER_H
 
-#include "Sql/rosterdbmanager.h"
+#include "../Sql/rosterdbmanager.h"
 
 #include "contactlist.h"
 #include "contact.h"

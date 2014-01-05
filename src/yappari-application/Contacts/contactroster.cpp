@@ -31,16 +31,16 @@
 #include <QMessageBox>
 #include <QDateTime>
 
-#include "Dbus/gtkbindings-new.h"
-#include <libosso.h>
-#include <libebook/e-book.h>
-#include <libosso-abook/osso-abook.h>
+//#include "Dbus/gtkbindings-new.h"
+//#include <libosso.h>
+//#include <libebook/e-book.h>
+//#include <libosso-abook/osso-abook.h>
 
-#include "Whatsapp/util/utilities.h"
+#include "../Whatsapp/util/utilities.h"
 
 #include "contactlistiterator.h"
 
-#include "version.h"
+//#include "version.h"
 #include "globalconstants.h"
 
 ContactRoster::ContactRoster(QObject *parent) : QObject(parent)
@@ -259,6 +259,7 @@ void ContactRoster::updatePhoto(Contact *c)
 
 void ContactRoster::getPhotoFromAddressBook(Contact *c)
 {
+    /*
     bool hadPreviousPhoto = !c->photoId.isEmpty();
 
     GError *error = NULL;
@@ -323,6 +324,7 @@ void ContactRoster::getPhotoFromAddressBook(Contact *c)
 
     if (hadPreviousPhoto)
         emit updatePhotoContact(c);
+    */
 }
 
 void ContactRoster::updateStatus(Contact *contact)

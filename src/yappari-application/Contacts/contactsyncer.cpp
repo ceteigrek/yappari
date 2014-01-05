@@ -31,19 +31,19 @@
 #include <QImage>
 #include <QUrl>
 
-#include "Dbus/gtkbindings-new.h"
-#include <libosso.h>
-#include <libebook/e-book.h>
-#include <libosso-abook/osso-abook.h>
-#include <gdk/gdkpixbuf.h>
+//#include "Dbus/gtkbindings-new.h"
+//#include <libosso.h>
+//#include <libebook/e-book.h>
+//#include <libosso-abook/osso-abook.h>
+//#include <gdk/gdkpixbuf.h>
 
-#include "Whatsapp/util/utilities.h"
-#include "Whatsapp/util/qtmd5digest.h"
+#include "../Whatsapp/util/utilities.h"
+#include "../Whatsapp/util/qtmd5digest.h"
 
-#include "qt-json/json.h"
+#include <QJsonDocument>
 
 #include "client.h"
-#include "version.h"
+//#include "version.h"
 #include "globalconstants.h"
 #include "contactsyncer.h"
 
@@ -164,6 +164,7 @@ void ContactSyncer::freeAddressBook()
 
 void ContactSyncer::getAddressBook()
 {
+    /*
     Utilities::logData("Retrieving address book...");
     qint64 startTime = QDateTime::currentMSecsSinceEpoch();
 
@@ -229,6 +230,7 @@ void ContactSyncer::getAddressBook()
     qint64 endTime = QDateTime::currentMSecsSinceEpoch() - startTime;
     Utilities::logData("Address book retrieved in " + QString::number(endTime) +
                        " milliseconds.");
+    */
 }
 
 void ContactSyncer::sync()
@@ -311,7 +313,7 @@ void ContactSyncer::syncAddressBook()
 void ContactSyncer::authResponse()
 {
     Utilities::logData("syncer: authResponse()");
-    QString result = QString::fromUtf8(socket->readAll().constData());
+    QByteArray result = socket->readAll().constData();
     disconnect(this, SIGNAL(finished()), this, SLOT(authResponse()));
 
     // Utilities::logData("Reply: " + result);
@@ -322,8 +324,7 @@ void ContactSyncer::authResponse()
 
     clearHeaders();
 
-    bool ok;
-    QVariantMap mapResult = QtJson::parse(result, ok).toMap();
+    QVariantMap mapResult = QJsonDocument::fromJson(result).toVariant().toMap();
 
     QString message = mapResult.value("message").toString();
 
@@ -427,13 +428,12 @@ void ContactSyncer::fillBuffer()
 
 void ContactSyncer::parseResponse()
 {
-    QString jsonStr = QString::fromUtf8(readBuffer.constData());
+    QByteArray data = readBuffer.constData();
     Utilities::logData("syncer: Response received");
 
     // Utilities::logData("Reply: " + jsonStr);
 
-    bool ok;
-    QVariantMap mapResult = QtJson::parse(jsonStr, ok).toMap();
+    QVariantMap mapResult = QJsonDocument::fromJson(data).toVariant().toMap();
 
     if (mapResult.contains("c"))
     {

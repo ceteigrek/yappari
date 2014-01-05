@@ -36,8 +36,8 @@
 #include "globalconstants.h"
 #include "rosterdbmanager.h"
 
-#include "Contacts/group.h"
-#include "Whatsapp/util/utilities.h"
+#include "../Contacts/group.h"
+#include "../Whatsapp/util/utilities.h"
 
 #define DB_FILENAME "roster.db"
 #define DB_VERSION  5

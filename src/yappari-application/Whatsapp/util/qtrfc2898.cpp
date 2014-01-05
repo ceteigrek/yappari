@@ -29,7 +29,7 @@
 #include "qtrfc2898.h"
 #include "qthmacsha1.h"
 
-#include "Whatsapp/protocolexception.h"
+#include "protocolexception.h"
 
 #define SHA1_DIGEST_LENGTH          20
 

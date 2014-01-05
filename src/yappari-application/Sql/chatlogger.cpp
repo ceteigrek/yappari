@@ -34,7 +34,7 @@
 #include "globalconstants.h"
 #include "chatlogger.h"
 
-#include "Whatsapp/util/utilities.h"
+#include "../Whatsapp/util/utilities.h"
 
 #define MAX_MESSAGES               7
 #define LOG_VERSION                3

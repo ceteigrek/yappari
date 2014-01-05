@@ -28,7 +28,7 @@
 
 #include "contact.h"
 
-#include "Whatsapp/util/utilities.h"
+//#include "../Whatsapp/util/utilities.h"
 
 Contact::Contact()
 {

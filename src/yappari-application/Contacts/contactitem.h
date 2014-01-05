@@ -29,7 +29,7 @@
 #ifndef CONTACTITEM_H
 #define CONTACTITEM_H
 
-#include "Contacts/contact.h"
+#include "contact.h"
 
 #include <QListWidgetItem>
 #include <QString>

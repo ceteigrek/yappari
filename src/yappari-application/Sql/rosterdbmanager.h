@@ -35,9 +35,9 @@
 #include <QList>
 #include <QObject>
 
-#include "Contacts/group.h"
-#include "Contacts/contact.h"
-#include "Contacts/contactlist.h"
+#include "../Contacts/group.h"
+#include "../Contacts/contact.h"
+#include "../Contacts/contactlist.h"
 
 class RosterDBManager : public QObject
 {

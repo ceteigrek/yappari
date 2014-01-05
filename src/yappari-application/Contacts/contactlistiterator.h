@@ -31,7 +31,7 @@
 
 #include <QHashIterator>
 
-#include "Contacts/contactlist.h"
+#include "contactlist.h"
 
 class ContactListIterator : public QHashIterator<QString,Contact *>
 {
