@@ -32,6 +32,7 @@
 #include <QVariant>
 #include <QByteArray>
 #include <QBuffer>
+#include <QTime>
 
 #include "globalconstants.h"
 #include "rosterdbmanager.h"
@@ -271,7 +272,8 @@ ContactList *RosterDBManager::getAllContacts()
 
     QSqlQuery query(db);
 
-    qint64 startTime = QDateTime::currentDateTime().toMSecsSinceEpoch();
+    QTime time;
+    time.start();
     Utilities::logData("Reading roster DB...");
 
     query.prepare("select * from roster");
@@ -321,8 +323,7 @@ ContactList *RosterDBManager::getAllContacts()
 
         list->insert(c->jid,c);
     }
-    qint64 endTime = QDateTime::currentDateTime().toMSecsSinceEpoch() - startTime;
-    Utilities::logData("Roster retrieved in " + QString::number(endTime) +
+    Utilities::logData("Roster retrieved in " + QString::number(time.elapsed()) +
                        " milliseconds.");
 
     return list;
