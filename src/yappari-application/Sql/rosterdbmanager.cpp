@@ -309,7 +309,7 @@ ContactList *RosterDBManager::getAllContacts()
 
             QSqlQuery subQuery(db);
             subQuery.prepare("select jid from participants where gjid = :gjid");
-            subQuery.bindValue(":jid",g->jid);
+            subQuery.bindValue(":gjid",g->jid);
             subQuery.exec();
 
             while (subQuery.next()) {
