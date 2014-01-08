@@ -272,24 +272,42 @@ FMessage ChatLogger::sqlQueryResultToFMessage(QString jid,QSqlQuery& query)
     return msg;
 }
 
-QList<FMessage> ChatLogger::lastMessages()
+QList<FMessage> ChatLogger::lastMessages(const QString &lastId)
 {
     QList<FMessage> list;
+    int lastLocalId = -1;
 
     // Exit if there are no more log to read
-    if (lastId <= 1)
-        return list;
+    //if (lastId <= 1)
+    //    return list;
+    if (!lastId.isEmpty()) {
+        QSqlQuery query(db);
+        query.prepare("select localid from log "
+                      "where id=:id "
+                      "order by localid desc limit 1");
+        query.bindValue(":id", lastId);
+        query.exec();
+        query.next();
+
+        lastLocalId = query.value(0).toInt();
+    }
 
     qint64 startTime = QDateTime::currentDateTime().toMSecsSinceEpoch();
     Utilities::logData("Reading log for " + jid + "...");
 
     QSqlQuery query(db);
 
-    query.prepare("select * from log "
-                  "where localid < :lastid "
-                  "order by localid desc limit :limit");
+    if (lastLocalId == -1) {
+        query.prepare("select * from log "
+                      //"where localid <= :lastid "
+                      "order by localid desc limit :limit");
+    } else {
+        query.prepare("select * from log "
+                      "where localid < :lastid "
+                      "order by localid desc limit :limit");
+    }
 
-    query.bindValue(":lastid",lastId);
+    query.bindValue(":lastid",lastLocalId);
     query.bindValue(":limit",MAX_MESSAGES);
     query.exec();
 
@@ -298,7 +316,7 @@ QList<FMessage> ChatLogger::lastMessages()
 
         list.append(msg);
 
-        lastId = query.value(LOG_LOCALID).toInt();
+        //lastId = query.value(LOG_LOCALID).toInt();
     }
     qint64 endTime = QDateTime::currentDateTime().toMSecsSinceEpoch() - startTime;
     Utilities::logData("Log retrieved in " + QString::number(endTime) +

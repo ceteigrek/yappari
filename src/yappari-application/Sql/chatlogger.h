@@ -47,7 +47,7 @@ public:
     ChatLogger(QObject *parent = 0);
     ~ChatLogger();
     bool init(QString jid);
-    QList<FMessage> lastMessages();
+    QList<FMessage> lastMessages(const QString& lastId = QString());
     FMessage lastMessage();
 
     static FMessage lastMessage(QString jid);
